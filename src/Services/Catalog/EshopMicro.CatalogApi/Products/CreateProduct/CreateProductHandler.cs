@@ -1,4 +1,5 @@
-﻿using EshopMicro.Common.CQRS;
+﻿using EshopMicro.CatalogApi.Models;
+using EshopMicro.Common.CQRS;
 
 namespace EshopMicro.CatalogApi.Products.CreateProduct;
 
@@ -13,10 +14,19 @@ public record CreateProductResult(Guid Id);
 internal class CreateProductCommandHandler 
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
-    public Task<CreateProductResult> Handle(
-        CreateProductCommand request,
+    public async Task<CreateProductResult> Handle(
+        CreateProductCommand command,
         CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var product = new Product
+        {
+            Name = command.Name,
+            Category = command.Category,
+            Description = command.Description,
+            ImageFile = command.ImageFile,
+            Price = command.Price
+        };
+
+        return new CreateProductResult(Guid.NewGuid());
     }
 }
