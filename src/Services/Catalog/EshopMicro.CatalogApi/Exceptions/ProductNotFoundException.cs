@@ -1,9 +1,11 @@
-﻿namespace EshopMicro.CatalogApi.Exceptions;
+﻿using EshopMicro.Common.Exceptions;
 
-public class ProductNotFoundException: Exception
+namespace EshopMicro.CatalogApi.Exceptions;
+
+public class ProductNotFoundException : NotFoundException
 {
-    public ProductNotFoundException(Guid id)
-        : base($"Product with id {id} was not found.")
+    public ProductNotFoundException(Guid Id)
+        : base("Product", Id)
     {
     }
 }

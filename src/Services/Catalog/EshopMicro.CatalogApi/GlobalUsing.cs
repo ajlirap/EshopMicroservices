@@ -6,3 +6,5 @@ global using EshopMicro.CatalogApi.Models;
 global using EshopMicro.Common.CQRS;
 global using EshopMicro.CatalogApi.Exceptions;
 global using FluentValidation;
+global using EshopMicro.Common.Behaviors;
+global using EshopMicro.Common.Handler;
