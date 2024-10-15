@@ -1,9 +1,10 @@
 ﻿using EshopMicro.Common.Exceptions;
+using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace EshopMicro.Common.Handler;
 
@@ -64,7 +65,7 @@ public class CustomerExceptionHandler
 
         if (exception is ValidationException validationException)
         {
-            problemDetails.Extensions.Add("ValidationError", validationException.Value);
+            problemDetails.Extensions.Add("ValidationError", validationException.Errors);
         }
 
         await context.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
