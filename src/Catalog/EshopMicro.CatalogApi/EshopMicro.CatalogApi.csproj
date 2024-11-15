@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\EshopMicro.Common\EshopMicro.Common.csproj" />
+    <ProjectReference Include="..\..\Common\EshopMicro.Common\EshopMicro.Common.csproj" />
   </ItemGroup>
 
 </Project>
