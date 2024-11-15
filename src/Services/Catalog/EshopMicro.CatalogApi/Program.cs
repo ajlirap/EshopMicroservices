@@ -22,6 +22,11 @@ builder.Services.AddMarten(opt =>
     opt.Connection(builder.Configuration.GetConnectionString("Database")!);
 }).UseLightweightSessions();
 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+}
+
 builder.Services.AddExceptionHandler<CustomerExceptionHandler>();
 
 var app = builder.Build();

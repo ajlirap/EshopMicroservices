@@ -12,7 +12,10 @@ public class CustomerExceptionHandler
     (ILogger<CustomerExceptionHandler> logger)
     : IExceptionHandler
 {
-    public async ValueTask<bool> TryHandleAsync(HttpContext context, Exception exception, CancellationToken cancellationToken)
+    public async ValueTask<bool> TryHandleAsync(
+        HttpContext context,
+        Exception exception,
+        CancellationToken cancellationToken)
     {
         logger.LogError(
             "Error Message: {exceptionMessage}, time of occurrance {time}",

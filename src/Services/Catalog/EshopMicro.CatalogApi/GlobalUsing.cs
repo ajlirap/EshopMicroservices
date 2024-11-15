@@ -8,3 +8,4 @@ global using EshopMicro.CatalogApi.Exceptions;
 global using FluentValidation;
 global using EshopMicro.Common.Behaviors;
 global using EshopMicro.Common.Handler;
+global using EshopMicro.CatalogApi.Data;
