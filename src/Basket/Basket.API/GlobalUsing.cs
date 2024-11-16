@@ -5,3 +5,4 @@ global using Mapster;
 global using MediatR;
 global using FluentValidation;
 global using EshopMicro.Common.Behaviors;
+global using Basket.API.Data;

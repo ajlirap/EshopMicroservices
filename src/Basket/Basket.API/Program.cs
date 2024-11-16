@@ -1,3 +1,4 @@
+using EshopMicro.Common.Handler;
 using Marten;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,8 +21,13 @@ builder.Services.AddMarten(opts =>
 
 }).UseLightweightSessions();
 
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
+builder.Services.AddExceptionHandler<CustomerExceptionHandler>();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(opts => { });
 
 //2. Configure the HTTP request pipeline.
 app.MapCarter();
