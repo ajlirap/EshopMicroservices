@@ -1,13 +1,17 @@
 services:
   catalogdb:
    image: postgres
-   
-  eshopmicro.catalogapi:
-    image: ${DOCKER_REGISTRY-}eshopmicrocatalogapi
+  basketdb:
+   image: postgres
+
+  catalogapi:
+    image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: ..
-      dockerfile: src/Catalog/EshopMicro.CatalogApi/Dockerfile
+      dockerfile: src/Catalog/CatalogApi/Dockerfile
 
 volumes:
   postgres_catalog:
+  postgres_basket:
+
 
