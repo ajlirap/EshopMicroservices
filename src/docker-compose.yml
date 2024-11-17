@@ -4,6 +4,11 @@ services:
   basketdb:
    image: postgres
 
+  distributedcache:
+    image: redis
+    ports:
+      - "6379:6379"
+
   catalogapi:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
