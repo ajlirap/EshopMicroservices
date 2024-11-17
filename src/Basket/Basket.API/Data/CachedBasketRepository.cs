@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
-public class CachedBasketRepository (IBasketRepository repository, IDistributedCache cache)
+public class CachedBasketRepository (IBasketRepository repository, 
+    IDistributedCache cache)
     : IBasketRepository
 {
 
