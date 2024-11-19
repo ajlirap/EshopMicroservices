@@ -1,3 +1,4 @@
+using Discount.Grpc;
 using EshopMicro.Common.Handler;
 using HealthChecks.UI.Client;
 using Marten;
@@ -16,6 +17,7 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
+//Data Services
 builder.Services.AddMarten(opts => 
 {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
@@ -32,6 +34,28 @@ builder.Services.AddStackExchangeRedisCache(options =>
     //options.InstanceName = "Basket";
 });
 
+//Grpc Services
+//TODO: Add Discount.Grpc client
+
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+})
+.ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler();
+    // bypass SSL certificate
+    if (builder.Environment.IsDevelopment())
+    {
+        handler.ServerCertificateCustomValidationCallback = 
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+    }
+    return handler;
+});
+
+
+
+//Cross-cutting concerns Services
 builder.Services.AddExceptionHandler<CustomerExceptionHandler>();
 
 builder.Services.AddHealthChecks()
