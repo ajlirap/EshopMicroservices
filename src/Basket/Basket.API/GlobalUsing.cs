@@ -3,6 +3,8 @@ global using EshopMicro.Common.CQRS;
 global using Carter;
 global using Mapster;
 global using MediatR;
+global using Marten;
 global using FluentValidation;
 global using EshopMicro.Common.Behaviors;
+global using EshopMicro.Common.Handler;
 global using Basket.API.Data;
