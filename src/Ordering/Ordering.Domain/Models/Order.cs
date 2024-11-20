@@ -19,9 +19,9 @@ public class Order : Aggregate<OrderId>
         private set { }
     }
 
-    public static OrderItem Create(OrderId id, CustomerId customerId, OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment)
+    public static Order Create(OrderId id, CustomerId customerId, OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment)
     {
-        var order = new OrderItem
+        var order = new Order
         {
             Id = id,
             CustomerId = customerId,
