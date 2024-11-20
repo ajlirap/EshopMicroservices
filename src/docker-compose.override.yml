@@ -28,6 +28,17 @@ services:
     restart: always
     ports:
       - "6379:6379"
+  
+  orderdb:
+    container_name: orderdb
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SwN12345678
+    restart: always
+    ports:
+      - "1433:1434"
+    volumes:
+      - sqlvolume:/var/opt/mssql
 
   catalogapi:
     environment:
