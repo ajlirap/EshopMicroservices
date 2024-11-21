@@ -6,7 +6,7 @@ public record CustomerId
 {
     public Guid Value { get; }
 
-    private CustomerId(Guid Value) => Value = Value;
+    private CustomerId(Guid Value) => this.Value = Value;
 
     public static CustomerId Of(Guid value)
     {
@@ -15,7 +15,6 @@ public record CustomerId
         {
             throw new DomainException("Customer id cannot be empty");
         }
-
         return new CustomerId(value);
     }
 }

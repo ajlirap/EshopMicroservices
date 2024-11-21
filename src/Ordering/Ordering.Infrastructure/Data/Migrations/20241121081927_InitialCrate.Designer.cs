@@ -13,7 +13,7 @@ using Ordering.Infrastructure.Data;
 namespace Ordering.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241120082720_InitialCrate")]
+    [Migration("20241121081927_InitialCrate")]
     partial class InitialCrate
     {
         /// <inheritdoc />
@@ -31,23 +31,21 @@ namespace Ordering.Infrastructure.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("CreateAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -68,11 +66,10 @@ namespace Ordering.Infrastructure.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("CreateAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("CustomerId")
@@ -82,7 +79,6 @@ namespace Ordering.Infrastructure.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
@@ -109,7 +105,6 @@ namespace Ordering.Infrastructure.Data.Migrations
                                 .HasColumnType("nvarchar(50)");
 
                             b1.Property<string>("EmailAddress")
-                                .IsRequired()
                                 .HasMaxLength(50)
                                 .HasColumnType("nvarchar(50)");
 
@@ -125,13 +120,13 @@ namespace Ordering.Infrastructure.Data.Migrations
 
                             b1.Property<string>("State")
                                 .IsRequired()
-                                .HasMaxLength(40)
-                                .HasColumnType("nvarchar(40)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)");
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)");
                         });
 
                     b.ComplexProperty<Dictionary<string, object>>("OrderName", "Ordering.Domain.Models.Order.OrderName#OrderName", b1 =>
@@ -151,27 +146,25 @@ namespace Ordering.Infrastructure.Data.Migrations
 
                             b1.Property<string>("CVV")
                                 .IsRequired()
-                                .HasMaxLength(5)
-                                .HasColumnType("nvarchar(5)");
+                                .HasMaxLength(3)
+                                .HasColumnType("nvarchar(3)");
 
                             b1.Property<string>("CardName")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
                             b1.Property<string>("CardNumber")
                                 .IsRequired()
-                                .HasMaxLength(25)
-                                .HasColumnType("nvarchar(25)");
+                                .HasMaxLength(24)
+                                .HasColumnType("nvarchar(24)");
 
                             b1.Property<string>("Expiration")
                                 .IsRequired()
-                                .HasMaxLength(5)
-                                .HasColumnType("nvarchar(5)");
+                                .HasMaxLength(10)
+                                .HasColumnType("nvarchar(10)");
 
-                            b1.Property<string>("PaymentMethod")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
+                            b1.Property<int>("PaymentMethod")
+                                .HasColumnType("int");
                         });
 
                     b.ComplexProperty<Dictionary<string, object>>("ShippingAddress", "Ordering.Domain.Models.Order.ShippingAddress#Address", b1 =>
@@ -189,7 +182,6 @@ namespace Ordering.Infrastructure.Data.Migrations
                                 .HasColumnType("nvarchar(50)");
 
                             b1.Property<string>("EmailAddress")
-                                .IsRequired()
                                 .HasMaxLength(50)
                                 .HasColumnType("nvarchar(50)");
 
@@ -205,20 +197,20 @@ namespace Ordering.Infrastructure.Data.Migrations
 
                             b1.Property<string>("State")
                                 .IsRequired()
-                                .HasMaxLength(40)
-                                .HasColumnType("nvarchar(40)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)");
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)");
                         });
 
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Ordering.Domain.Models.OrderItem", b =>
@@ -226,18 +218,16 @@ namespace Ordering.Infrastructure.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("CreateAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("OrderId")
@@ -258,7 +248,7 @@ namespace Ordering.Infrastructure.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Ordering.Domain.Models.Product", b =>
@@ -266,18 +256,16 @@ namespace Ordering.Infrastructure.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("CreateAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
