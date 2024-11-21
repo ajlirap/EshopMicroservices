@@ -8,7 +8,7 @@ public static class DatabaseExtensions
 
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-        await context.Database.MigrateAsync();
+        context.Database.MigrateAsync().GetAwaiter().GetResult();
 
         await SeedAsync(context);
     }
@@ -22,7 +22,7 @@ public static class DatabaseExtensions
 
     private static async Task SeedCustomerAsync(ApplicationDbContext context)
     {
-        if (!await context.Customers.AsNoTracking().AnyAsync())
+        if (!await context.Customers.AnyAsync())
         {
             await context.Customers.AddRangeAsync(InitialData.Customers);
             await context.SaveChangesAsync();
