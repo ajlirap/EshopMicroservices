@@ -1,5 +1,4 @@
 ﻿using EshopMicro.Common.Behaviors;
-using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
