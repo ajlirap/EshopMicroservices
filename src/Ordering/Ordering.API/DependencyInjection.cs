@@ -1,5 +1,4 @@
-﻿using Carter;
-using EshopMicro.Common.Handler;
+﻿using EshopMicro.Common.Handler;
 
 namespace Ordering.API;
 
