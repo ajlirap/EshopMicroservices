@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\EshopMicro.Common\EshopMicro.Common.csproj" />
+    <ProjectReference Include="..\..\Common\EshopMicro.Messaging\EshopMicro.Messaging.csproj" />
   </ItemGroup>
 
   <ItemGroup>
