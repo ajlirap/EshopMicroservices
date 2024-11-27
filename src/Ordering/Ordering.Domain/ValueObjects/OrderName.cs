@@ -13,7 +13,7 @@ public record OrderName
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(value, nameof(value));
 
-        ArgumentOutOfRangeException.ThrowIfNotEqual(value.Length, DefaultLength, nameof(value));
+        //ArgumentOutOfRangeException.ThrowIfNotEqual(value.Length, DefaultLength, nameof(value));
 
         return new OrderName(value);
     }
