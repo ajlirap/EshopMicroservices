@@ -1,8 +1,4 @@
-﻿
-
-using Refit;
-
-namespace Shopping.Web.Services;
+﻿namespace Shopping.Web.Services;
 
 public interface ICatalogService
 {
