@@ -1,7 +1,8 @@
 namespace Shopping.Web.Pages
 {
     public class ProductDetailModel
-        (ICatalogService catalogService, IBasketService basketService, ILogger<ProductDetailModel> logger)
+        (ICatalogService catalogService, IBasketService basketService, 
+        ILogger<ProductDetailModel> logger)
         : PageModel
     {
         public ProductModel Product { get; set; } = default!;
