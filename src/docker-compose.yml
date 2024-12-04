@@ -14,6 +14,9 @@ services:
   messagebroker:
     image: rabbitmq:management
 
+  portainer:
+    image: portainer/portainer-ce
+
   catalogapi:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
@@ -54,6 +57,7 @@ volumes:
   postgres_catalog:
   postgres_basket:
   sqlvolume:
+  portainer_data:
 
 
 
